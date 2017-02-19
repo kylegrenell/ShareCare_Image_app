@@ -9,7 +9,6 @@ Images = new Mongo.Collection("images");
 if(Meteor.isClient){
   console.log("I am the client");
   
-
  // Template.images.helpers({images: img_data});
  Template.images.helpers({images: Images.find()});
 
@@ -22,6 +21,7 @@ if(Meteor.isClient){
   'click .js-del-image':function(e){
     var image_id = this._id;
     console.log(image_id);
+    Images.remove({"_id":image_id});
   }
 });
 
