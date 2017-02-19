@@ -29,7 +29,8 @@ if(Meteor.isClient){
 
  Template.images.events({
   'click .js-image': function(e){
-    alert('hello!');
+    // console.log(e);
+    $(event.target).css("width", "50px");
   }
 });
 
