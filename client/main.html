@@ -4,14 +4,35 @@
 
 <body>
   <h1>Moomin pix</h1>
-
+  <div class="container">
   {{> images}}
+  </div>
 </body>
 
 <template name="images">
+
+<div class="row">
+
 {{#each images}}
-  <img src="{{img_src}}" alt="{{img_alt}}" height={{height}}/>
+
+<div class="col-xs-12 col-md-3">
+<!-- col-md-12 ensures he image will take up the whole grid on phones/smaller devices -->
+<!-- each image takes up 3 colums on the larger layout -->
+  <div class="thumbnail">
+    <img src="{{img_src}}" alt="{{img_alt}}"/>
+  </div>
+
+    <div class="caption">
+      <h3>Moomins Yo</h3>
+      <p>Each image has been borrowed from other web folk.</p>
+    </div>
+
+  </div> <!-- column end -->
+
 {{/each}}
+
+</div>
+
 </template>
 
 
