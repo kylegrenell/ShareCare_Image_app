@@ -21,8 +21,12 @@ if(Meteor.isClient){
   'click .js-del-image':function(e){
     var image_id = this._id;
     console.log(image_id);
-    Images.remove({"_id":image_id});
+    // jquery hide function easier to see deleteion for user
+    $("#" + image_id).hide('slow', function(){
+      Images.remove({"_id":image_id});
+    })
   }
+
 });
 
 }
