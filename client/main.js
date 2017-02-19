@@ -10,7 +10,7 @@ if(Meteor.isClient){
     img_src: "tove.jpg",
     img_alt: "moomin"
   },
- {
+  {
    img_src: "moomin2.jpg",
    img_alt: "moomin 2"
  },
@@ -19,9 +19,19 @@ if(Meteor.isClient){
    img_alt: "moomin 3"
  }
 
-  ];
+ ];
 
-  Template.images.helpers({images: img_data});
+ Template.images.helpers(
+ {
+  images: img_data
+}
+);
+
+ Template.images.events({
+  'click .js-image': function(e){
+    alert('hello!');
+  }
+});
 
 }
 
