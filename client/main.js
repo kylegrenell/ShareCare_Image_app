@@ -3,6 +3,9 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
+// Images = new Mongo.Collection("images");
+// console.log( Images.find().count() );
+
 if(Meteor.isClient){
   console.log("I am the client");
   let img_data = [
