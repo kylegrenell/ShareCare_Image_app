@@ -3,7 +3,7 @@
 </head>
 
 <body>
-  <h1>Moomin pix</h1>
+  <h1>Picture Gallery</h1>
   <div class="container">
   {{> images}}
   </div>
@@ -16,20 +16,19 @@
 {{#each images}}
 
 <div class="col-xs-12 col-md-3">
-<!-- col-md-12 ensures he image will take up the whole grid on phones/smaller devices -->
-<!-- each image takes up 3 colums on the larger layout -->
+  <!-- col-md-12 ensures he image will take up the whole grid on phones/smaller devices -->
+  <!-- each image takes up 3 colums on the larger layout -->
   <div class="thumbnail">
 
     <img class="js-image" src="{{img_src}}" alt="{{img_alt}}"/>
 
-  </div>
-
     <div class="caption">
-      <h3>Moomins Yo</h3>
+      <h3>Pic</h3>
       <p>Each image has been borrowed from other web folk.</p>
+      <button class="js-del-image btn btn-warning">delete</button>
     </div>
-
-  </div> <!-- column end -->
+  </div>
+</div> <!-- column end -->
 
 {{/each}}
 
