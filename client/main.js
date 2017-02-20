@@ -3,10 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-Images = new Mongo.Collection("images");
 console.log("Client is working");
-
-if(Meteor.isClient){
 
   Session.set("imageLimit", 8);
 
@@ -138,5 +135,4 @@ if(Meteor.isClient){
       }
     });
 
-}
 
