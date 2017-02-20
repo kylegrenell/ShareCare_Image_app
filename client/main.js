@@ -25,6 +25,14 @@ if(Meteor.isClient){
     $("#" + image_id).hide('slow', function(){
       Images.remove({"_id":image_id});
     })
+  },
+
+  'click .js-rate-image':function(event){
+    var rating = $(event.currentTarget).data('userrating');
+    // userrating is the object within the data
+    console.log(rating);
+    var image_id = this.id;
+    console.log(image_id);
   }
 
 });
