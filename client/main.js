@@ -4,7 +4,6 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import './main.html';
 
 Images = new Mongo.Collection("images");
-// console.log( Images.find().count() );
 
 if(Meteor.isClient){
   console.log("I am the client");
@@ -36,14 +35,31 @@ if(Meteor.isClient){
     var image_id = this.id;
     console.log(image_id);
 
+    //updating the mongodb collection
     Images.update(
       {_id:image_id}, 
-      {$set: {rating:rating}
-    });
-    //updating the mongodb collection
+      {$set: {rating:rating}});
   }
-
 });
+    
+ Template.image_add_form.events({
+  'submit .js-add-image':function(event){
+    var img_src, img_alt;
+    img_src = event.target.img_src.value;
+    img_alt = event.target.img_alt.value;
+    console.log("src: " + img_src + "alt: " + img_alt);
+
+    Images.insert({
+      img_src:img_src,
+      img_alt:img_alt,
+      createdOn: new Date()
+    });
+
+    return false;
+    // stops the browser from default, which is to reload page
+      }
+    });
+
 
 }
 
