@@ -13,6 +13,15 @@ if(Meteor.isClient){
   Images.find({}, {sort:{createdOn:-1, rating:-1}})
 });
 
+ Template.body.helpers({username:function(){
+  if(Meteor.user()){
+    return Meteor.user().emails[0].address;
+  } else {
+    return "captain anon"
+  }
+}
+});
+
  Template.images.events({
   'click .js-image': function(e){
     // console.log(e);
