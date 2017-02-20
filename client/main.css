@@ -3,3 +3,7 @@
   min-height: 500px;
   max-height: 500px;
 }
+
+#add-image-button{
+  margin-bottom: 10px;
+}
