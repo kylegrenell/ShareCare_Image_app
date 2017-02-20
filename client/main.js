@@ -7,15 +7,19 @@ Images = new Mongo.Collection("images");
 
 if(Meteor.isClient){
   console.log("I am the client");
-  
- // Template.images.helpers({images: img_data});
+
+  Accounts.ui.config({
+    passwordSignupFields: "USERNAME_AND_EMAIL"
+  });
+
  Template.images.helpers({images: 
   Images.find({}, {sort:{createdOn:-1, rating:-1}})
 });
 
  Template.body.helpers({username:function(){
   if(Meteor.user()){
-    return Meteor.user().emails[0].address;
+    return Meteor.user().username;
+    // return Meteor.user().emails[0].address;
   } else {
     return "captain anon"
   }
@@ -24,14 +28,12 @@ if(Meteor.isClient){
 
  Template.images.events({
   'click .js-image': function(e){
-    // console.log(e);
     $(event.target).css("width", "50px");
   },
 
   'click .js-del-image':function(e){
     var image_id = this._id;
     console.log(image_id);
-    // jquery hide function easier to see deleteion for user
     $("#" + image_id).hide('slow', function(){
       Images.remove({"_id":image_id});
     })
@@ -39,12 +41,10 @@ if(Meteor.isClient){
 
   'click .js-rate-image':function(event){
     var rating = $(event.currentTarget).data('userrating');
-    // userrating is the object within the data
     console.log(rating);
     var image_id = this.id;
     console.log(image_id);
 
-    //updating the mongodb collection
     Images.update(
       {_id:image_id}, 
       {$set: {rating:rating}});
@@ -69,12 +69,9 @@ if(Meteor.isClient){
     });
 
     $("#image_add_form").modal('hide');
-    // code to dismiss the modal upon upload
     return false;
-    // stops the browser from default, which is to reload page
       }
     });
-
 
 }
 
