@@ -10,7 +10,7 @@ if(Meteor.isClient){
   
  // Template.images.helpers({images: img_data});
  Template.images.helpers({images: 
-  Images.find({}, {sort:{rating:-1}})
+  Images.find({}, {sort:{createdOn:-1, rating:-1}})
 });
 
  Template.images.events({
