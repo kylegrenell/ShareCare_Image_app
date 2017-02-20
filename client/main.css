@@ -1,7 +1,7 @@
 /* CSS declarations go here */
 .thumbnail{
   min-height: 500px;
-    box-shadow: 0 4px 8px 0 lightgrey;
+    box-shadow: 0 0px 5px 0 lightgrey;
 }
 
 .thumbnail-img{
