@@ -59,6 +59,8 @@ if(Meteor.isClient){
       createdOn: new Date()
     });
 
+    $("#image_add_form").modal('hide');
+    // code to dismiss the modal upon upload
     return false;
     // stops the browser from default, which is to reload page
       }
