@@ -4,13 +4,15 @@
 
 <body>
 
-{{> image_add_form}}
-
+  {{> image_add_form}}
+  <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+      {{> loginButtons}}
+    </div>
+  </nav>
   <div class="container">
   <h1>Sharing is caring</h1>
 
-  {{> loginButtons}}
-  <br />
   {{> images}}
   </div>
 </body>
@@ -46,7 +48,7 @@
   <!-- col-md-12 ensures he image will take up the whole grid on phones/smaller devices -->
   <!-- each image takes up 3 colums on the larger layout -->
   <div class="thumbnail">
-    <img class="js-image" src="{{img_src}}" alt="{{img_alt}}"/>
+    <img class="js-image thumbnail-img" src="{{img_src}}" alt="{{img_alt}}"/>
     <div class="caption">
       <h3>Your Rating: {{rating}}</h3>
       <p>{{img_alt}}</p>

@@ -1,9 +1,21 @@
 /* CSS declarations go here */
 .thumbnail{
   min-height: 500px;
-  max-height: 500px;
+    box-shadow: 0 4px 8px 0 lightgrey;
+}
+
+.thumbnail-img{
+max-height: 300px;
 }
 
 #add-image-button{
   margin-bottom: 10px;
+}
+
+body{
+  padding: 60px;
+}
+
+.navbar {
+  box-shadow: 0 1px 7px 0 lightgrey;
 }
