@@ -1,13 +1,13 @@
 import { Meteor } from 'meteor/meteor';
 
 Images = new Mongo.Collection("images");
-console.log( Images.find().count() );
+console.log( "Images in database: " + Images.find().count() );
 
 if(Meteor.isServer){
 
   Meteor.startup(() => {
   // code to run on server at startup
-  console.log("I am the server")
+  console.log("Server is up and running...")
 
   if(Images.find().count() == 0){
 

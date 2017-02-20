@@ -4,9 +4,26 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import './main.html';
 
 Images = new Mongo.Collection("images");
+console.log("Client is working");
 
 if(Meteor.isClient){
-  console.log("I am the client");
+
+  Session.set("imageLimit", 8);
+
+  lastScrollTop = 0; 
+  $(window).scroll(function(event){
+    // test if we are near the bottom of the window
+    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+      // where are we in the page? 
+      var scrollTop = $(this).scrollTop();
+      // test if we are going down
+      if (scrollTop > lastScrollTop){
+        // yes we are heading down...
+       Session.set("imageLimit", Session.get("imageLimit") + 4);
+      }
+      lastScrollTop = scrollTop;
+    }      
+  })
 
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_AND_EMAIL"
@@ -18,13 +35,23 @@ if(Meteor.isClient){
       return Images.find({createdBy:Session.get("userFilter")}, {sort:{createdOn:-1, rating:-1}});
     } 
     else {
-      return Images.find({}, {sort:{createdOn:-1, rating:-1}});
+      return Images.find({}, {sort:{createdOn:-1, rating:-1}, limit:Session.get("imageLimit")});
     }
 },
 
   filtering_images:function(){
     if(Session.get("userFilter")){
       return true;
+    } else {
+      return false;
+    }
+  },
+
+  getFilterUser:function(){
+    if(Session.get("userFilter")){
+      var user = Meteor.users.findOne(
+        {_id: Session.get("userFilter")});
+      return user.username;
     } else {
       return false;
     }
@@ -64,7 +91,7 @@ if(Meteor.isClient){
     })
   },
 
-  'click .js-rate-image':function(event){
+  'click .js-rate-image':function(e){
     var rating = $(event.currentTarget).data('userrating');
     console.log(rating);
     var image_id = this.id;
@@ -90,7 +117,8 @@ if(Meteor.isClient){
 });
     
  Template.image_add_form.events({
-  'submit .js-add-image':function(event){
+
+  'submit .js-add-image':function(e){
     var img_src, img_alt;
     img_src = event.target.img_src.value;
     img_alt = event.target.img_alt.value;
