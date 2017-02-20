@@ -10,7 +10,9 @@ if(Meteor.isClient){
   console.log("I am the client");
   
  // Template.images.helpers({images: img_data});
- Template.images.helpers({images: Images.find()});
+ Template.images.helpers({images: 
+  Images.find({}, {sort:{rating:-1}})
+});
 
  Template.images.events({
   'click .js-image': function(e){
@@ -33,6 +35,12 @@ if(Meteor.isClient){
     console.log(rating);
     var image_id = this.id;
     console.log(image_id);
+
+    Images.update(
+      {_id:image_id}, 
+      {$set: {rating:rating}
+    });
+    //updating the mongodb collection
   }
 
 });
