@@ -19,3 +19,7 @@ body{
 .navbar {
   box-shadow: 0 1px 7px 0 lightgrey;
 }
+
+.single-img {
+  max-width: 100%;
+}
