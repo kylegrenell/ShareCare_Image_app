@@ -4,18 +4,30 @@
 
 <body>
 
-  {{> image_add_form}}
+</body>
+
+<template name="ApplicationLayout">
+{{> yield "navbar"}}
+{{> yield "main"}}
+</template>
+
+<template name="welcome">
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Welcome to Share Care {{username}}!</h1>
+        <h3>Where sharing is caring </h3>
+        <a href="/images" class="btn btn-info">ENTER</a>
+    </div>
+  </div>
+</template>
+
+<template name="navbar">
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       {{> loginButtons}}
     </div>
   </nav>
-  <div class="container">
-    <h1>Welcome to Share Care {{username}}!</h1>
-    <h4>Where sharing is caring </h4>
-    {{> images}}
-  </div>
-</body>
+</template>
 
 <template name="image_add_form">
   <div class="modal fade" id="image_add_form">
@@ -41,37 +53,38 @@
 </template>
 
 <template name="images">
-  {{#if currentUser}}
-  <button id="add-image-button" class="btn btn-success js-show-image-form">add image</button>
-  {{/if}}
-  <h3>
-    {{#if filtering_images}}
-    Showing all images by user {{getFilterUser}} ~ <a href="#" class="js-remove-image-filter">Show all images</a>
+  <div class="container js-container">
+    {{#if currentUser}}
+    <button id="add-image-button" class="btn btn-success js-show-image-form">add image</button>
     {{/if}}
-  </h3>
-  <div class="row">
-    {{#each images}}
-    <div class="col-xs-12 col-md-3" id="{{_id}}">
-      <div class="thumbnail">
-        <img class="js-image thumbnail-img" src="{{img_src}}" alt="{{img_alt}}"/>
-        <div class="caption">
-          <h3>Your Rating: {{rating}}</h3>
-          <p>{{img_alt}}</p>
-          <p>
-            User: 
-            <a href="#" class="js-set-image-filter">{{getUser createdBy}}</a>
-          </p>
-          <p>{{> starsRating mutable=true class="js-rate-image" id=_id}}
-          </p>
-          <button class="js-del-image btn btn-warning">delete</button>
+    <h3>
+      {{#if filtering_images}}
+      Showing all images by user {{getFilterUser}} ~ <a href="#" class="js-remove-image-filter">Show all images</a>
+      {{/if}}
+    </h3>
+    <div class="row">
+      {{#each images}}
+      <div class="col-xs-12 col-md-3" id="{{_id}}">
+        <div class="thumbnail">
+          <img class="js-image thumbnail-img" src="{{img_src}}" alt="{{img_alt}}"/>
+          <div class="caption">
+            <h3>Your Rating: {{rating}}</h3>
+            <p>{{img_alt}}</p>
+            <p>
+              User: 
+              <a href="#" class="js-set-image-filter">{{getUser createdBy}}</a>
+            </p>
+            <p>{{> starsRating mutable=true class="js-rate-image" id=_id}}
+            </p>
+            <button class="js-del-image btn btn-warning">delete</button>
+          </div>
         </div>
-      </div>
-    </div> 
+      </div> 
 
-    {{/each}}
+      {{/each}}
 
+    </div>
   </div>
-
 </template>
 
 

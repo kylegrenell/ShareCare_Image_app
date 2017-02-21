@@ -3,8 +3,26 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-console.log("Client is working");
+Router.configure({
+  layoutTemplate: 'ApplicationLayout'
+});
 
+Router.route('/', function () {
+  this.render('welcome', {
+    to:"main"
+  });
+});
+
+Router.route('/images', function(){
+  this.render('navbar', {
+    to:"navbar"
+  });
+  this.render('images', {
+    to:"main"
+  });
+}); 
+
+/////// scrolling
   Session.set("imageLimit", 8);
 
   lastScrollTop = 0; 
@@ -18,10 +36,12 @@ console.log("Client is working");
     }      
   })
 
+/////// accounts config
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_AND_EMAIL"
   });
 
+/////// helpers
  Template.images.helpers({
   images: function(){
     if(Session.get("userFilter")){
@@ -70,6 +90,8 @@ console.log("Client is working");
 }
 });
 
+
+/////// events
  Template.images.events({
   'click .js-image': function(e){
     $(event.target).css("width", "50px");
