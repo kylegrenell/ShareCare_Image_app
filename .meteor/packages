@@ -24,3 +24,4 @@ barbatus:stars-rating
 accounts-ui
 accounts-password
 session
+iron:router
