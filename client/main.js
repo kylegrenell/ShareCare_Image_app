@@ -9,13 +9,9 @@ console.log("Client is working");
 
   lastScrollTop = 0; 
   $(window).scroll(function(event){
-    // test if we are near the bottom of the window
     if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-      // where are we in the page? 
       var scrollTop = $(this).scrollTop();
-      // test if we are going down
       if (scrollTop > lastScrollTop){
-        // yes we are heading down...
        Session.set("imageLimit", Session.get("imageLimit") + 4);
       }
       lastScrollTop = scrollTop;
@@ -68,7 +64,6 @@ console.log("Client is working");
  Template.body.helpers({username:function(){
   if(Meteor.user()){
     return Meteor.user().username;
-    // return Meteor.user().emails[0].address;
   } else {
     return "captain anon"
   }
